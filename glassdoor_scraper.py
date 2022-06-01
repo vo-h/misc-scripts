@@ -1,7 +1,38 @@
-# -*- coding: utf-8 -*-
 """
-Created on Fri Jul  9 19:39:45 2021
-@author: hienv
+Introduction
+A short script to scrape reviews of a particular company from Glassdoor.
+
+To Begin
+You will need:
+
+URL of the 2nd review page of the company of interest. For example, Intel's 2nd review page looks like this: (Notice that 'P2' refers to Page number 2) https://www.glassdoor.com/Reviews/Intel-Corporation-Reviews-E1519_P2.htm?filter.iso3Language=eng
+The prefix is gonna be: 'Reviews/Intel-Corporation-Reviews-E1519_P'
+The suffix is gonna be: '.htm?filter.iso3Language=eng'
+Name of a .xlsx file you want to save the data to.
+First and last page you want to scrape data from.
+Required Software:
+
+Python packages: Selenium, Pandas, time, OS
+Google Chrome and Google Chrome Driver
+How It Works
+The get_data() function first checks if target file exists. If it does, it loads the file, so that more entries can be added. Then it calls get_page() for each page from first and last page.
+The get_page() function opens up a Google Chrome browser in the background and search for the desired information, then close the browser. Keeping the same browser, and changing the URL only will trigger the Glassdoor's sign-in pop-up. So, I've written the script to open a new window for each page and close it instead. It takes about 20 seconds to scrape a page if the page contains all the information Selenium is tasked to find. It takes longer if information is missing.
+End Result
+The final .xlsx file will have the following columns:
+
+Index
+Date
+Position
+Location
+Pros
+Cons
+Work/Life Balance Rating
+Culture Rating
+Diversity & Inclusion Rating
+Career Opportunities Rating
+Benefits Rating
+Management Rating
+Page Number
 """
 
 from selenium import webdriver
